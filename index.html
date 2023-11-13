@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Consumir API de Usuarios</title>
+</head>
+<body>
+  <h1>Usuarios:</h1>
+  <ul id="userList"></ul>
+  <script>
+    const userList = document.getElementById("userList");
+
+    // Realizar una solicitud para obtener la lista de usuarios desde la API
+    fetch("http://localhost:3000/users")
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((user) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = `ID: ${user.id}, Nombre: ${user.name}`;
+          userList.appendChild(listItem);
+        });
+      })
+      .catch((error) => console.error("Error al obtener la lista de usuarios: " + error));
+  </script>
+</body>
+</html>
